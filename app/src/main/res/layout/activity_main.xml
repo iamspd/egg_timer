@@ -23,18 +23,26 @@
         android:src="@drawable/egg" />
 
     <TextView
-        android:id="@+id/tvTime"
+        android:id="@+id/tvHide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="@android:string/ok" />
+        android:visibility="invisible"/>
 
-    <Button
-        android:id="@+id/btnStart"
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_below="@id/tvHide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:layout_centerInParent="true"
+        android:textSize="80sp"
+        android:text="00:30" />
+
+    <Button
+        android:id="@+id/btnController"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go"
         android:layout_centerInParent="true"
         android:layout_below="@id/tvTime"
         android:textAllCaps="false"
