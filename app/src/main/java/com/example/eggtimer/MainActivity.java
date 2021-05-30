@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean counterIsActive = false;
     private CountDownTimer countDownTimer;
 
-    public void updateTimer(int secondsLeft){
+    public void updateTimer(int secondsLeft) {
 
         int minutes = secondsLeft / 60;
         int seconds = secondsLeft - minutes * 60;
@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
         String secondsZero = Integer.toString(seconds);
 
-        if (!minutesZero.equals("10")){
+        if (!minutesZero.equals("10")) {
             minutesZero = "0" + minutesZero;
         }
 
-        if (seconds <= 9){
+        if (seconds <= 9) {
             secondsZero = "0" + secondsZero;
         }
 
@@ -46,7 +46,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onTimerControllerClick(View view){
+    public void resetTimer(){
+
+        counterIsActive = false;
+        countDownTimer.cancel();
+        seekBarTimer.setEnabled(true);
+        seekBarTimer.setProgress(30);
+        tvTime.setText("00:30");
+        btnTimerController.setText("Go!");
+
+    }
+
+    public void onTimerControllerClick(View view) {
 
         if (!counterIsActive) {
 
@@ -72,17 +83,15 @@ public class MainActivity extends AppCompatActivity {
                     MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
                     mPlayer.start();
 
+                    resetTimer();
+
+
                 }
             }.start();
 
         } else {
 
-            counterIsActive = false;
-            countDownTimer.cancel();
-            seekBarTimer.setEnabled(true);
-            seekBarTimer.setProgress(30);
-            tvTime.setText("00:30");
-            btnTimerController.setText("Go!");
+           resetTimer();
 
         }
 
