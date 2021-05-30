@@ -2,10 +2,13 @@ package com.example.eggtimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
+import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -14,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
     // widgets
     private SeekBar seekBarTimer;
     private TextView tvTime;
+    private Button btnTimerController;
+
+    // variables
+    private boolean counterIsActive = false;
 
     public void updateTimer(int secondsLeft){
 
@@ -40,22 +47,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void onTimerControllerClick(View view){
 
-        new CountDownTimer(seekBarTimer.getProgress() * 1000, 1000){
+        if (!counterIsActive) {
 
-            @Override
-            public void onTick(long millisUntilFinished) {
+            counterIsActive = true;
+            seekBarTimer.setEnabled(false);
+            btnTimerController.setText("Stop");
 
-                updateTimer((int) millisUntilFinished / 1000);
+            new CountDownTimer(seekBarTimer.getProgress() * 1000 + 100, 1000) {
 
-            }
+                @Override
+                public void onTick(long millisUntilFinished) {
 
-            @Override
-            public void onFinish() {
+                    updateTimer((int) millisUntilFinished / 1000);
 
-                Log.i("Timer Countdown: ", "finished!");
 
-            }
-        }.start();
+                }
+
+                @Override
+                public void onFinish() {
+
+                    // Log.i("Timer Countdown: ", "finished!");
+
+                    MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
+                    mPlayer.start();
+
+                }
+            }.start();
+
+        }
 
     }
 
@@ -65,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tvTime = findViewById(R.id.tvTime);
+        btnTimerController = findViewById(R.id.btnController);
 
         seekBarTimer = findViewById(R.id.seekBarTimer);
 
