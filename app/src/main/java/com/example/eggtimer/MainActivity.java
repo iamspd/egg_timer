@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     // variables
     private boolean counterIsActive = false;
+    private CountDownTimer countDownTimer;
 
     public void updateTimer(int secondsLeft){
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             seekBarTimer.setEnabled(false);
             btnTimerController.setText("Stop");
 
-            new CountDownTimer(seekBarTimer.getProgress() * 1000 + 100, 1000) {
+            countDownTimer = new CountDownTimer(seekBarTimer.getProgress() * 1000 + 100, 1000) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -73,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }.start();
+
+        } else {
+
+            counterIsActive = false;
+            countDownTimer.cancel();
+            seekBarTimer.setEnabled(true);
+            seekBarTimer.setProgress(30);
+            tvTime.setText("00:30");
+            btnTimerController.setText("Go!");
 
         }
 
