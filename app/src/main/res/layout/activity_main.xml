@@ -7,18 +7,18 @@
     tools:context=".MainActivity">
 
     <SeekBar
+        android:id="@+id/seekBarTimer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:id="@+id/seekBarTimer" />
+        android:layout_marginTop="12dp" />
 
     <ImageView
         android:id="@+id/imgEgg"
-        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/seekBarTimer"
         android:layout_centerInParent="true"
+        android:layout_marginTop="12dp"
         android:scaleType="centerInside"
         android:src="@drawable/egg" />
 
@@ -27,26 +27,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tvTime"
-        android:layout_below="@id/tvHide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvHide"
         android:layout_centerInParent="true"
-        android:textSize="80sp"
-        android:text="00:30" />
+        android:text="00:30"
+        android:textSize="80sp" />
 
     <Button
         android:id="@+id/btnController"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go"
-        android:layout_centerInParent="true"
         android:layout_below="@id/tvTime"
-        android:textAllCaps="false"
+        android:layout_centerInParent="true"
         android:layout_marginTop="12dp"
+        android:onClick="onTimerControllerClick"
+        android:text="Go!"
+        android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
