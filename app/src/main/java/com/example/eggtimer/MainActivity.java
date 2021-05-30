@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -21,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
         String minutesZero = Integer.toString(minutes);
 
-        if (minutesZero.equals("10")){
+        String secondsZero = Integer.toString(seconds);
+
+        if (!minutesZero.equals("10")){
             minutesZero = "0" + minutesZero;
         }
 
-        String secondsZero = Integer.toString(seconds);
-
-        if (secondsZero.equals("0")){
-            secondsZero = "00";
+        if (seconds <= 9){
+            secondsZero = "0" + secondsZero;
         }
 
         String timerText = minutesZero + ":" + secondsZero;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+
+                Log.i("Timer Countdown: ", "finished!");
 
             }
         }.start();
